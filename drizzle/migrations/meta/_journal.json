@@ -1,5 +1,13 @@
 {
   "version": "7",
   "dialect": "postgresql",
-  "entries": []
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1789475998014,
+      "tag": "0000_phase1_auth_tenancy_rbac",
+      "breakpoints": true
+    }
+  ]
 }
