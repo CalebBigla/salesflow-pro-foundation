@@ -6,7 +6,7 @@ import { AuthShell } from "@/components/auth-shell";
 export const Route = createFileRoute("/accept-invite")({
   ssr: false,
   validateSearch: (search: Record<string, unknown>) => ({
-    token: typeof search.token === "string" ? search.token : "",
+    token: typeof search["token"] === "string" ? (search["token"] as string) : "",
   }),
   head: () => ({
     meta: [
