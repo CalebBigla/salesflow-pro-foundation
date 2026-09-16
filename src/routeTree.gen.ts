@@ -17,7 +17,12 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthenticatedHomeRouteImport } from './routes/_authenticated/home'
+import { Route as AuthenticatedManagerRouteImport } from './routes/_authenticated/manager'
 import { Route as AuthenticatedNoAccessRouteImport } from './routes/_authenticated/no-access'
+import { Route as AuthenticatedOwnerRouteImport } from './routes/_authenticated/owner'
+import { Route as AuthenticatedSalesRepRouteImport } from './routes/_authenticated/sales-rep'
+import { Route as AuthenticatedStorekeeperRouteImport } from './routes/_authenticated/storekeeper'
+import { Route as AuthenticatedTeamRouteImport } from './routes/_authenticated/team'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -58,9 +63,35 @@ const AuthenticatedHomeRoute = AuthenticatedHomeRouteImport.update({
   path: '/home',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedManagerRoute = AuthenticatedManagerRouteImport.update({
+  id: '/manager',
+  path: '/manager',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedNoAccessRoute = AuthenticatedNoAccessRouteImport.update({
   id: '/no-access',
   path: '/no-access',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedOwnerRoute = AuthenticatedOwnerRouteImport.update({
+  id: '/owner',
+  path: '/owner',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedSalesRepRoute = AuthenticatedSalesRepRouteImport.update({
+  id: '/sales-rep',
+  path: '/sales-rep',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedStorekeeperRoute =
+  AuthenticatedStorekeeperRouteImport.update({
+    id: '/storekeeper',
+    path: '/storekeeper',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedTeamRoute = AuthenticatedTeamRouteImport.update({
+  id: '/team',
+  path: '/team',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 
@@ -72,7 +103,12 @@ export interface FileRoutesByFullPath {
   '/register': typeof RegisterRoute
   '/reset-password': typeof ResetPasswordRoute
   '/home': typeof AuthenticatedHomeRoute
+  '/manager': typeof AuthenticatedManagerRoute
   '/no-access': typeof AuthenticatedNoAccessRoute
+  '/owner': typeof AuthenticatedOwnerRoute
+  '/sales-rep': typeof AuthenticatedSalesRepRoute
+  '/storekeeper': typeof AuthenticatedStorekeeperRoute
+  '/team': typeof AuthenticatedTeamRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -82,7 +118,12 @@ export interface FileRoutesByTo {
   '/register': typeof RegisterRoute
   '/reset-password': typeof ResetPasswordRoute
   '/home': typeof AuthenticatedHomeRoute
+  '/manager': typeof AuthenticatedManagerRoute
   '/no-access': typeof AuthenticatedNoAccessRoute
+  '/owner': typeof AuthenticatedOwnerRoute
+  '/sales-rep': typeof AuthenticatedSalesRepRoute
+  '/storekeeper': typeof AuthenticatedStorekeeperRoute
+  '/team': typeof AuthenticatedTeamRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -94,7 +135,12 @@ export interface FileRoutesById {
   '/register': typeof RegisterRoute
   '/reset-password': typeof ResetPasswordRoute
   '/_authenticated/home': typeof AuthenticatedHomeRoute
+  '/_authenticated/manager': typeof AuthenticatedManagerRoute
   '/_authenticated/no-access': typeof AuthenticatedNoAccessRoute
+  '/_authenticated/owner': typeof AuthenticatedOwnerRoute
+  '/_authenticated/sales-rep': typeof AuthenticatedSalesRepRoute
+  '/_authenticated/storekeeper': typeof AuthenticatedStorekeeperRoute
+  '/_authenticated/team': typeof AuthenticatedTeamRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -106,7 +152,12 @@ export interface FileRouteTypes {
     | '/register'
     | '/reset-password'
     | '/home'
+    | '/manager'
     | '/no-access'
+    | '/owner'
+    | '/sales-rep'
+    | '/storekeeper'
+    | '/team'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -116,7 +167,12 @@ export interface FileRouteTypes {
     | '/register'
     | '/reset-password'
     | '/home'
+    | '/manager'
     | '/no-access'
+    | '/owner'
+    | '/sales-rep'
+    | '/storekeeper'
+    | '/team'
   id:
     | '__root__'
     | '/'
@@ -127,7 +183,12 @@ export interface FileRouteTypes {
     | '/register'
     | '/reset-password'
     | '/_authenticated/home'
+    | '/_authenticated/manager'
     | '/_authenticated/no-access'
+    | '/_authenticated/owner'
+    | '/_authenticated/sales-rep'
+    | '/_authenticated/storekeeper'
+    | '/_authenticated/team'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -198,6 +259,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedHomeRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/manager': {
+      id: '/_authenticated/manager'
+      path: '/manager'
+      fullPath: '/manager'
+      preLoaderRoute: typeof AuthenticatedManagerRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/no-access': {
       id: '/_authenticated/no-access'
       path: '/no-access'
@@ -205,17 +273,55 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedNoAccessRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/owner': {
+      id: '/_authenticated/owner'
+      path: '/owner'
+      fullPath: '/owner'
+      preLoaderRoute: typeof AuthenticatedOwnerRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/sales-rep': {
+      id: '/_authenticated/sales-rep'
+      path: '/sales-rep'
+      fullPath: '/sales-rep'
+      preLoaderRoute: typeof AuthenticatedSalesRepRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/storekeeper': {
+      id: '/_authenticated/storekeeper'
+      path: '/storekeeper'
+      fullPath: '/storekeeper'
+      preLoaderRoute: typeof AuthenticatedStorekeeperRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/team': {
+      id: '/_authenticated/team'
+      path: '/team'
+      fullPath: '/team'
+      preLoaderRoute: typeof AuthenticatedTeamRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedHomeRoute: typeof AuthenticatedHomeRoute
+  AuthenticatedManagerRoute: typeof AuthenticatedManagerRoute
   AuthenticatedNoAccessRoute: typeof AuthenticatedNoAccessRoute
+  AuthenticatedOwnerRoute: typeof AuthenticatedOwnerRoute
+  AuthenticatedSalesRepRoute: typeof AuthenticatedSalesRepRoute
+  AuthenticatedStorekeeperRoute: typeof AuthenticatedStorekeeperRoute
+  AuthenticatedTeamRoute: typeof AuthenticatedTeamRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedHomeRoute: AuthenticatedHomeRoute,
+  AuthenticatedManagerRoute: AuthenticatedManagerRoute,
   AuthenticatedNoAccessRoute: AuthenticatedNoAccessRoute,
+  AuthenticatedOwnerRoute: AuthenticatedOwnerRoute,
+  AuthenticatedSalesRepRoute: AuthenticatedSalesRepRoute,
+  AuthenticatedStorekeeperRoute: AuthenticatedStorekeeperRoute,
+  AuthenticatedTeamRoute: AuthenticatedTeamRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
