@@ -1,7 +1,9 @@
-# SalesFlow Pro — Schema Plan
+# SalesFlow Pro — Schema
 
-Phase 0 planning document. **No tables have been created yet** and **no RLS policies are
-defined yet** — this file is the agreed target shape for Phase 1 (auth) and Phase 2 (data).
+**Status: applied.** Every table below exists in the database, with row level security
+enabled, grants issued to `authenticated` / `service_role`, and the PRD 4.2 role rules
+enforced as SQL policies (see `docs/PERMISSIONS.md`). Two tables were added beyond the
+Phase 0 plan: `user_roles` and `invitations` (documented at the end of this file).
 
 ## Multi-tenancy rule
 
