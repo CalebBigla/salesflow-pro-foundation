@@ -8,7 +8,10 @@ export const Route = createFileRoute("/forgot-password")({
   head: () => ({
     meta: [
       { title: "Reset your password — SalesFlow Pro" },
-      { name: "description", content: "Request a password reset link for your SalesFlow Pro account." },
+      {
+        name: "description",
+        content: "Request a password reset link for your SalesFlow Pro account.",
+      },
       { property: "og:title", content: "Reset your password — SalesFlow Pro" },
       { property: "og:description", content: "Request a password reset link." },
       { property: "og:type", content: "website" },

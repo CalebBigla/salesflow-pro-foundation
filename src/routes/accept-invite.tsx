@@ -13,7 +13,8 @@ export const Route = createFileRoute("/accept-invite")({
       { title: "Accept your invitation — SalesFlow Pro" },
       {
         name: "description",
-        content: "Create your SalesFlow Pro account from an invitation and join your team's workspace.",
+        content:
+          "Create your SalesFlow Pro account from an invitation and join your team's workspace.",
       },
       { property: "og:title", content: "Accept your invitation — SalesFlow Pro" },
       { property: "og:description", content: "Join your team's workspace." },

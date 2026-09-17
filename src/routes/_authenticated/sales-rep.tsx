@@ -5,7 +5,10 @@ export const Route = createFileRoute("/_authenticated/sales-rep")({
   head: () => ({
     meta: [
       { title: "Sales rep dashboard — SalesFlow Pro" },
-      { name: "description", content: "Sales representative view: own sales, stock requests and targets." },
+      {
+        name: "description",
+        content: "Sales representative view: own sales, stock requests and targets.",
+      },
       { property: "og:title", content: "Sales rep dashboard — SalesFlow Pro" },
       { property: "og:description", content: "Sales representative view of your own numbers." },
       { property: "og:type", content: "website" },
@@ -17,7 +20,8 @@ export const Route = createFileRoute("/_authenticated/sales-rep")({
     <DashboardShell role="sales_rep">
       <h1 className="text-display text-foreground">Sales representative dashboard</h1>
       <p className="text-body mt-1 max-w-xl text-muted-foreground">
-        Recording sales and requesting stock arrive in Phase 2. You will only ever see your own sales.
+        Recording sales and requesting stock arrive in Phase 2. You will only ever see your own
+        sales.
       </p>
       <PhaseTwoNote
         items={[
