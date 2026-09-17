@@ -17,8 +17,8 @@ export const Route = createFileRoute("/_authenticated/manager")({
     <DashboardShell role="manager">
       <h1 className="text-display text-foreground">Manager dashboard</h1>
       <p className="text-body mt-1 max-w-xl text-muted-foreground">
-        You can invite storekeepers and sales representatives from the Team page. Targets you set need
-        owner approval.
+        You can invite storekeepers and sales representatives from the Team page. Targets you set
+        need owner approval.
       </p>
       <PhaseTwoNote
         items={[

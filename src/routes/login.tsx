@@ -8,7 +8,10 @@ export const Route = createFileRoute("/login")({
   head: () => ({
     meta: [
       { title: "Sign in — SalesFlow Pro" },
-      { name: "description", content: "Sign in to your SalesFlow Pro sales and inventory workspace." },
+      {
+        name: "description",
+        content: "Sign in to your SalesFlow Pro sales and inventory workspace.",
+      },
       { property: "og:title", content: "Sign in — SalesFlow Pro" },
       { property: "og:description", content: "Sign in to your SalesFlow Pro workspace." },
       { property: "og:type", content: "website" },

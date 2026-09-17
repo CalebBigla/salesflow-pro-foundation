@@ -10,7 +10,10 @@ export const Route = createFileRoute("/_authenticated/team")({
   head: () => ({
     meta: [
       { title: "Team — SalesFlow Pro" },
-      { name: "description", content: "Invite managers, storekeepers and sales representatives to your workspace." },
+      {
+        name: "description",
+        content: "Invite managers, storekeepers and sales representatives to your workspace.",
+      },
       { property: "og:title", content: "Team — SalesFlow Pro" },
       { property: "og:description", content: "Invite and review the people in your workspace." },
       { property: "og:type", content: "website" },

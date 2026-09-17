@@ -61,7 +61,8 @@ export const resolveSession = createServerFn({ method: "POST" })
     const meta = (authUser.user.user_metadata ?? {}) as Record<string, unknown>;
     const email = authUser.user.email ?? "";
     const fullName = typeof meta["full_name"] === "string" ? (meta["full_name"] as string) : null;
-    const inviteToken = typeof meta["invite_token"] === "string" ? (meta["invite_token"] as string) : "";
+    const inviteToken =
+      typeof meta["invite_token"] === "string" ? (meta["invite_token"] as string) : "";
     const businessName =
       typeof meta["business_name"] === "string" ? (meta["business_name"] as string) : "";
 

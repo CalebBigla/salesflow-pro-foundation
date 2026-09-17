@@ -5,7 +5,10 @@ export const Route = createFileRoute("/_authenticated/owner")({
   head: () => ({
     meta: [
       { title: "Owner dashboard — SalesFlow Pro" },
-      { name: "description", content: "Business owner view: team, targets, inventory and audit trail." },
+      {
+        name: "description",
+        content: "Business owner view: team, targets, inventory and audit trail.",
+      },
       { property: "og:title", content: "Owner dashboard — SalesFlow Pro" },
       { property: "og:description", content: "Business owner view of your workspace." },
       { property: "og:type", content: "website" },

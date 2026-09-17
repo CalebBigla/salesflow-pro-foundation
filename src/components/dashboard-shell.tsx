@@ -35,7 +35,9 @@ export function DashboardShell({ role, children }: { role: AppRole; children: Re
     return (
       <main className="flex min-h-screen items-center justify-center bg-background px-3">
         <div className="max-w-md rounded-lg border border-border bg-card p-3 text-center">
-          <h1 className="text-heading text-card-foreground">We couldn&apos;t open your workspace</h1>
+          <h1 className="text-heading text-card-foreground">
+            We couldn&apos;t open your workspace
+          </h1>
           <p className="text-caption mt-1 text-muted-foreground">
             {error instanceof Error ? error.message : "Please try signing in again."}
           </p>
