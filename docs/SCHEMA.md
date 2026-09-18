@@ -44,7 +44,7 @@ auth user; no foreign key is declared against the auth schema.
 | email        | text        | NOT NULL                                 |
 | full_name    | text        |                                          |
 | phone        | text        |                                          |
-| status       | text        | NOT NULL, default `'invited'`             |
+| status       | text        | NOT NULL, default `'active'`              |
 | last_seen_at | timestamptz |                                          |
 | created_at   | timestamptz | NOT NULL                                 |
 | updated_at   | timestamptz | NOT NULL                                 |
@@ -112,8 +112,15 @@ auth user; no foreign key is declared against the auth schema.
 | period_end   | date          | NOT NULL                                     |
 | target_amount| numeric(12,2) | NOT NULL                                     |
 | currency     | text          | NOT NULL, default `'USD'`                    |
+| status       | text          | NOT NULL, default `'pending'` (pending/approved) |
+| created_by   | uuid          | FK → users(id)                               |
+| approved_by  | uuid          | FK → users(id)                               |
+| approved_at  | timestamptz   |                                              |
 | created_at   | timestamptz   | NOT NULL                                     |
 | updated_at   | timestamptz   | NOT NULL                                     |
+
+The `targets_enforce_approval()` trigger forces any non-owner write to `pending` and clears
+approval fields; only an owner can set a target to `approved`.
 
 ## audit_logs
 
