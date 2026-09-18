@@ -165,7 +165,7 @@ export const rejectStockRequest = createServerFn({ method: "POST" })
   .handler(async ({ context, data }) => {
     const { error } = await context.supabase.rpc("reject_stock_request", {
       _request_id: data.requestId,
-      _note: data.note ?? undefined,
+      ...(data.note ? { _note: data.note } : {}),
     });
     if (error) throw new Error(error.message);
     return { ok: true };
