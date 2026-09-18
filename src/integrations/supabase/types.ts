@@ -526,12 +526,56 @@ export type Database = {
       current_is_owner: { Args: never; Returns: boolean }
       current_profile_id: { Args: never; Returns: string }
       current_tenant_id: { Args: never; Returns: string }
+      fulfil_stock_request: {
+        Args: { _request_id: string }
+        Returns: {
+          created_at: string
+          id: string
+          note: string | null
+          product_id: string
+          quantity: number
+          requested_by: string
+          reviewed_at: string | null
+          reviewed_by: string | null
+          status: string
+          tenant_id: string
+          updated_at: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "stock_requests"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
           _user_id: string
         }
         Returns: boolean
+      }
+      reject_stock_request: {
+        Args: { _note?: string; _request_id: string }
+        Returns: {
+          created_at: string
+          id: string
+          note: string | null
+          product_id: string
+          quantity: number
+          requested_by: string
+          reviewed_at: string | null
+          reviewed_by: string | null
+          status: string
+          tenant_id: string
+          updated_at: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "stock_requests"
+          isOneToOne: true
+          isSetofReturn: false
+        }
       }
     }
     Enums: {
