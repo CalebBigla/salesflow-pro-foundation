@@ -44,7 +44,7 @@ auth user; no foreign key is declared against the auth schema.
 | email        | text        | NOT NULL                                 |
 | full_name    | text        |                                          |
 | phone        | text        |                                          |
-| status       | text        | NOT NULL, default `'invited'`             |
+| status       | text        | NOT NULL, default `'active'`              |
 | last_seen_at | timestamptz |                                          |
 | created_at   | timestamptz | NOT NULL                                 |
 | updated_at   | timestamptz | NOT NULL                                 |
@@ -112,8 +112,15 @@ auth user; no foreign key is declared against the auth schema.
 | period_end   | date          | NOT NULL                                     |
 | target_amount| numeric(12,2) | NOT NULL                                     |
 | currency     | text          | NOT NULL, default `'USD'`                    |
+| status       | text          | NOT NULL, default `'pending'` (pending/approved) |
+| created_by   | uuid          | FK → users(id)                               |
+| approved_by  | uuid          | FK → users(id)                               |
+| approved_at  | timestamptz   |                                              |
 | created_at   | timestamptz   | NOT NULL                                     |
 | updated_at   | timestamptz   | NOT NULL                                     |
+
+The `targets_enforce_approval()` trigger forces any non-owner write to `pending` and clears
+approval fields; only an owner can set a target to `approved`.
 
 ## audit_logs
 
@@ -131,7 +138,36 @@ auth user; no foreign key is declared against the auth schema.
 
 ---
 
-## Planned indexes
+## user_roles
+
+Roles live here, never on `users` (see `docs/PERMISSIONS.md` for why).
+
+| Column    | Type        | Notes                                        |
+| --------- | ----------- | -------------------------------------------- |
+| id        | uuid        | PK                                           |
+| tenant_id | uuid        | FK → tenants(id), NOT NULL                   |
+| user_id   | uuid        | FK → users(id) ON DELETE CASCADE, NOT NULL   |
+| role      | app_role    | NOT NULL (`owner`/`manager`/`storekeeper`/`sales_rep`) |
+| created_at| timestamptz | NOT NULL                                     |
+
+`UNIQUE (user_id, role)`. Read by the `has_role()` security-definer function.
+
+## invitations
+
+| Column      | Type        | Notes                                        |
+| ----------- | ----------- | -------------------------------------------- |
+| id          | uuid        | PK                                           |
+| tenant_id   | uuid        | FK → tenants(id), NOT NULL                   |
+| email       | text        | NOT NULL                                     |
+| role        | app_role    | NOT NULL                                     |
+| token       | text        | NOT NULL, UNIQUE                             |
+| invited_by  | uuid        | FK → users(id) ON DELETE SET NULL            |
+| expires_at  | timestamptz | NOT NULL, default `now() + 14 days`          |
+| accepted_at | timestamptz | null until the invite is used                |
+| created_at  | timestamptz | NOT NULL                                     |
+| updated_at  | timestamptz | NOT NULL                                     |
+
+## Indexes (applied)
 
 - `tenant_id` on every tenant-scoped table
 - `products (tenant_id, sku)` unique
@@ -139,8 +175,8 @@ auth user; no foreign key is declared against the auth schema.
 - `stock_requests (tenant_id, status)`
 - `audit_logs (tenant_id, created_at desc)`
 
-## Deferred to Phase 1
+## Phase 1 items (applied)
 
-- Row Level Security policies and table grants
-- `user_roles` table and `has_role()` security-definer function
-- Tenant provisioning + invite flow
+- Row Level Security policies and table grants on every table
+- `user_roles` table and `has_role()` / `current_has_role()` security-definer functions
+- Tenant provisioning + invite flow (see `src/lib/auth.functions.ts`)
