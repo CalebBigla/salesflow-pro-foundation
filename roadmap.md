@@ -25,6 +25,11 @@
   backend auth settings by a workspace admin. Documented in RLS_TEST_PLAN.md.
 
 
-## Phase 2 — Operations (not started)
+## Phase 2 — Operations (in progress)
 
-- [ ] Products, stock requests, sales entries, targets, reports, audit log views
+- [x] Stock module (PRD 6.3 / 7.1): product list, low-stock flagging, stock request lifecycle
+      (request -> approve/reject), atomic `fulfil_stock_request()` / `reject_stock_request()` with
+      row locks so concurrent approvals cannot oversell, audit_logs entry on every stock action
+- [x] Storekeeper dashboard: pending request queue, stock levels, add product
+- [x] Sales rep dashboard: request stock, own request history, read-only inventory
+- [ ] Sales entries, targets, reports, audit log views
