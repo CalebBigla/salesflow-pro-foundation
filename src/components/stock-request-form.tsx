@@ -139,7 +139,9 @@ export function StockRequestForm() {
         {requests.isPending ? (
           <p className="text-caption text-muted-foreground">Loading your requests…</p>
         ) : mine.length === 0 ? (
-          <p className="text-caption text-muted-foreground">You haven&apos;t requested stock yet.</p>
+          <p className="text-caption text-muted-foreground">
+            You haven&apos;t requested stock yet.
+          </p>
         ) : (
           <ul className="grid gap-2">
             {mine.map((r) => (

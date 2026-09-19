@@ -84,7 +84,10 @@ export function StockQueue() {
   });
 
   const pending = (requests.data ?? []).filter((r) => r.status === "pending");
-  const history = (requests.data ?? []).filter((r) => r.status !== "pending").slice(-10).reverse();
+  const history = (requests.data ?? [])
+    .filter((r) => r.status !== "pending")
+    .slice(-10)
+    .reverse();
 
   return (
     <>
