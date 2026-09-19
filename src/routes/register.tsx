@@ -4,7 +4,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { AuthShell } from "@/components/auth-shell";
 
 export const Route = createFileRoute("/register")({
-  ssr: false,
   head: () => ({
     meta: [
       { title: "Register your business — SalesFlow Pro" },

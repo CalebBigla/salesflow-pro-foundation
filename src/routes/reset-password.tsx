@@ -4,7 +4,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { AuthShell } from "@/components/auth-shell";
 
 export const Route = createFileRoute("/reset-password")({
-  ssr: false,
   head: () => ({
     meta: [
       { title: "Choose a new password — SalesFlow Pro" },
