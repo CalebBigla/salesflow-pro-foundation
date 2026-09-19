@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { DashboardShell, PhaseTwoNote } from "@/components/dashboard-shell";
+import { DashboardShell } from "@/components/dashboard-shell";
+import { StockQueue } from "@/components/stock-queue";
 
 export const Route = createFileRoute("/_authenticated/storekeeper")({
   head: () => ({
@@ -20,19 +21,9 @@ export const Route = createFileRoute("/_authenticated/storekeeper")({
     <DashboardShell role="storekeeper">
       <h1 className="text-display text-foreground">Storekeeper dashboard</h1>
       <p className="text-body mt-1 max-w-xl text-muted-foreground">
-        Stock handling tools arrive in Phase 2. Your access covers inventory and stock requests
-        only.
+        Approve or reject stock requests, watch stock levels and keep the product list up to date.
       </p>
-      <PhaseTwoNote
-        items={[
-          "Own dashboard",
-          "Inventory levels",
-          "Add / update stock",
-          "Stock request approvals",
-          "Product catalogue",
-          "Stock reports",
-        ]}
-      />
+      <StockQueue />
     </DashboardShell>
   ),
 });

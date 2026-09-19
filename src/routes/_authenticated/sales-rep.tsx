@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { DashboardShell, PhaseTwoNote } from "@/components/dashboard-shell";
+import { DashboardShell } from "@/components/dashboard-shell";
+import { StockRequestForm } from "@/components/stock-request-form";
 
 export const Route = createFileRoute("/_authenticated/sales-rep")({
   head: () => ({
@@ -20,19 +21,9 @@ export const Route = createFileRoute("/_authenticated/sales-rep")({
     <DashboardShell role="sales_rep">
       <h1 className="text-display text-foreground">Sales representative dashboard</h1>
       <p className="text-body mt-1 max-w-xl text-muted-foreground">
-        Recording sales and requesting stock arrive in Phase 2. You will only ever see your own
-        sales.
+        Request stock and follow your own requests. Recording sales arrives next.
       </p>
-      <PhaseTwoNote
-        items={[
-          "Own dashboard",
-          "Record daily sale",
-          "Submit stock request",
-          "View inventory (read only)",
-          "Own sales history",
-          "Own reports",
-        ]}
-      />
+      <StockRequestForm />
     </DashboardShell>
   ),
 });
